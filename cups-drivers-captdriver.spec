@@ -6,13 +6,12 @@
 
 Summary:	Cups filter for Canon CAPT printers
 Name:		cups-drivers-%{filter_name}
-Version:	0.1.3%{?snapshot:_git%{snapshot}}
-Release:	%{?snapshot:0.%{snapshot}.}1
+Version:	0.1.3
+Release:	%{?snapshot:0.%{snapshot}.}2
 License:	GPLv3+
 Group:		System/Printing
 Url:		https://github.com/agalakhov/captdriver
 Source0:	https://github.com/agalakhov/%{filter_name}/archive/%{?snapshot:%{commit}/}captdriver-%{?snapshot:%{commit}}%{?!snapshot:%{version}}.%{?snapshot:zip}%{?!snapshot:tar.gz}
-#Patch0:		captdriver_fix_tests.patch
 
 BuildRequires:	cups
 BuildRequires:	cups-common
