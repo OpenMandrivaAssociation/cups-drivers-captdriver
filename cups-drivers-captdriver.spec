@@ -1,7 +1,7 @@
 %define filter_name captdriver
 
-%define snapshot 20220921
-%define commit 50aa43b947fabee2967fa6757517fb30c197ecb3
+%define snapshot 20221008
+%define commit 175f8ff4464591feb67728c7752ac752c7b48d43
 %define shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Summary:	Cups filter for Canon CAPT printers
