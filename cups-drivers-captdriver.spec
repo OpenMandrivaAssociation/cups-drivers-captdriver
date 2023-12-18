@@ -1,17 +1,18 @@
 %define filter_name captdriver
 
-%define snapshot 20221008
-%define commit 175f8ff4464591feb67728c7752ac752c7b48d43
+%define snapshot 20231218
+%define commit 711d4a56c57e2dde5cfbb166f036192a5913413c
 %define shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Summary:	Cups filter for Canon CAPT printers
 Name:		cups-drivers-%{filter_name}
-Version:	0.1.3
+Version:	0.1.4
 Release:	%{?snapshot:0.%{snapshot}git.}1
 License:	GPLv3+
 Group:		System/Printing
-Url:		https://github.com/agalakhov/captdriver
-Source0:	https://github.com/agalakhov/%{filter_name}/archive/%{?snapshot:%{commit}/}captdriver-%{?snapshot:%{commit}}%{?!snapshot:%{version}}.%{?snapshot:zip}%{?!snapshot:tar.gz}
+# Also: https://github.com/agalakhov/captdriver
+Url:		https://github.com/mounaiban/captdriver
+Source0:	https://github.com/mounaiban/captdriver/archive/%{?snapshot:%{commit}/}captdriver-%{?snapshot:%{commit}}%{?!snapshot:%{version}}.%{?snapshot:zip}%{?!snapshot:tar.gz}
 
 BuildRequires:	cups
 BuildRequires:	cups-common
@@ -31,7 +32,7 @@ Actually it supports the following models:
 %files
 %license COPYING
 %doc AUTHORS README SPECS NEWS ChangeLog
-%{_libdir}/cups/filter/rastertocapt
+%{_prefix}/lib/cups/filter/rastertocapt
 %{_datadir}/cups/model/%{filter_name}/*ppd
 
 #----------------------------------------------------------------------------
@@ -42,14 +43,15 @@ Actually it supports the following models:
 %build
 autoreconf -fiv
 %configure
-%make_build all ppd
+%make_build all
+ppdc src/*.drv
 
 %install
 #make_install
 
 # filter
-install -dm 0755 %{buildroot}%{_libdir}/cups/filter/
-install -pm 0755 src/rastertocapt %{buildroot}%{_libdir}/cups/filter/
+install -dm 0755 %{buildroot}%{_prefix}/lib/cups/filter/
+install -pm 0755 src/rastertocapt %{buildroot}%{_prefix}/lib/cups/filter/
 
 # PPD files
 install -dm 0755 %{buildroot}%{_datadir}/cups/model/%{filter_name}/
