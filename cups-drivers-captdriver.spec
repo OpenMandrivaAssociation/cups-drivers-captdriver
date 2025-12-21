@@ -14,6 +14,11 @@ Group:		System/Printing
 Url:		https://github.com/mounaiban/captdriver
 Source0:	https://github.com/mounaiban/captdriver/archive/%{?snapshot:%{commit}/}captdriver-%{?snapshot:%{commit}}%{?!snapshot:%{version}}.%{?snapshot:zip}%{?!snapshot:tar.gz}
 
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	cups
 BuildRequires:	cups-common
 BuildRequires:	cups-devel
